@@ -1,0 +1,90 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile settings, theme preferences, and onboarding status.",
+      "type": "object",
+      "properties": {
+        "completedOnboarding": {
+          "type": "boolean",
+          "description": "Whether the user has completed the onboarding flow."
+        },
+        "theme": {
+          "type": "string",
+          "enum": ["light", "dark", "system"],
+          "description": "User selected application theme."
+        },
+        "reducedMotion": {
+          "type": "boolean",
+          "description": "Whether reduced motion transitions are enabled."
+        },
+        "defaultCategory": {
+          "type": "string",
+          "description": "Default reflection category preference."
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Timestamp of last preference update."
+        }
+      }
+    },
+    "JournalEntry": {
+      "title": "JournalEntry",
+      "description": "A private multi-turn journal reflection entry with mood, tags, and synthesis.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the journal entry."
+        },
+        "userId": {
+          "type": "string",
+          "description": "UID of the owning authenticated user."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the reflection."
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of reflection."
+        },
+        "messages": {
+          "type": "array",
+          "description": "List of multi-turn conversation messages."
+        },
+        "summary": {
+          "type": "string",
+          "description": "AI generated synthesis summary."
+        },
+        "mood": {
+          "type": "string",
+          "description": "Mood associated with this entry."
+        },
+        "tags": {
+          "type": "array",
+          "description": "User and AI tags."
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Creation timestamp in milliseconds."
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Last modified timestamp in milliseconds."
+        }
+      },
+      "required": ["id", "userId", "title", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User preferences and profile data."
+    },
+    "/users/{userId}/interactions/{interactionId}": {
+      "schema": "JournalEntry",
+      "description": "User private journal reflections and interactions."
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "InnerAtlas: Private AI Reflections & Personal Growth",
+  "description": "A private, secure AI reflection workspace with personal mood check-ins, reflection timeline, Memory Threads pattern discovery, Weekly Insights, and Cloud Firestore isolation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
